@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  .login-container {
+    min-height: 80vh;
+    background: linear-gradient(135deg, #f9f7ff 0%, #ffffff 100%);
+    padding: 40px 0;
+  }
+  
+  .login-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 35px rgba(91, 46, 229, 0.1);
+    border-top: 4px solid #ff4ecb;
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .login-title {
+    color: #5b2ee5;
+    font-weight: 700;
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
+  
+  .form-control {
+    background: rgba(249, 247, 255, 0.8);
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    color: #333 !important;
+  }
+  
+  .form-control:focus {
+    border-color: #5b2ee5;
+    box-shadow: 0 0 0 3px rgba(91, 46, 229, 0.1);
+    background: white;
+  }
+  
+  .form-control::placeholder {
+    color: #999;
+  }
+  
+  .btn-login {
+    background: linear-gradient(135deg, #ff4ecb, #9b4de0);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+  
+  .btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 78, 203, 0.3);
+    background: linear-gradient(135deg, #e03eb3, #8b43d6);
+  }
+  
+  .forgot-link {
+    color: #9b4de0 !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .forgot-link:hover {
+    color: #ff4ecb !important;
+  }
+  
+  .login-divider {
+    border-top: 1px solid #e5e5e5;
+    margin: 25px 0;
+    position: relative;
+  }
+  
+  .login-divider::before {
+    content: "or";
+    background: white;
+    padding: 0 15px;
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #999;
+    font-size: 0.9rem;
+  }
+  
+  .register-prompt {
+    color: #666;
+    margin-top: 25px;
+  }
+  
+  .register-link {
+    color: #5b2ee5;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  
+  .register-link:hover {
+    color: #ff4ecb;
+  }
+  
+  .academy-badge {
+    background: linear-gradient(135deg, #5b2ee5, #9b4de0);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+</style>
+
+<div class="login-container d-flex justify-content-center align-items-center">
+  <div class="login-card">
+    <div class="academy-badge">
+      AI Agent Academy
+    </div>
+    <h2 class="login-title">Welcome Back</h2>
+    
+    {% if form.errors %}
+    <div class="alert alert-danger" role="alert">
+      Invalid username or password. Please try again.
+    </div>
+    {% endif %}
+    
+    <form method="post">
+      {% csrf_token %}
+      <div class="mb-3">
+        <input type="text" name="username" placeholder="Username" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" name="password" placeholder="Password" class="form-control" required>
+      </div>
+      <button type="submit" class="btn btn-login">Login</button>
+    </form>
+    
+    <div class="login-divider"></div>
+  
+  </div>
+</div>
+{% endblock %}

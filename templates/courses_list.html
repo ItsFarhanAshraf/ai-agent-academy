@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Courses - AI Agent Academy{% endblock %}
+
+{% block content %}
+<h2 class="fw-bold text-center mb-5">Available Courses</h2>
+
+<style>
+/* === Course Card Styles === */
+.card {
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* Image container for consistent sizing */
+.card-img-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8f8f8;
+}
+
+/* Image styling */
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card-img-container img:hover {
+  transform: scale(1.05);
+}
+
+/* Title & description */
+.card-body h5 {
+  color: #5b2ee5; /* Purple color */
+  font-weight: 800; /* Extra bold */
+  font-size: 1.4rem; /* Larger size */
+  margin-bottom: 10px;
+}
+
+.card-body p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 15px;
+}
+
+/* Button */
+.btn-pink {
+  background-color: #ff4ecb;
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.btn-pink:hover {
+  background-color: #e03eb3;
+  transform: scale(1.05);
+}
+</style>
+
+<div class="container">
+  <div class="row justify-content-center">
+    {% for c in courses %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+          <div class="card-img-container">
+            {% if c.thumbnail %}
+              <img src="{{ c.thumbnail }}" alt="{{ c.title }}" class="card-img-top">
+            {% else %}
+              <img src="{% static 'images/default-course.jpg' %}" alt="Default" class="card-img-top">
+            {% endif %}
+          </div>
+          <div class="card-body text-center">
+            <h5 class="fw-bold mb-3">{{ c.title }}</h5>
+            <p class="text-muted small">{{ c.description|truncatechars:120 }}</p>
+            <a href="{% url 'course_detail' slug=c.slug %}" class="btn btn-pink mt-2">Open Course</a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-center text-muted">No courses found.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

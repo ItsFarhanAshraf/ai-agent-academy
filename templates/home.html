@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home - AI Agent Academy{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="hero-title">Southern Dallas Innovation Hub presents Agent Academy</h1>
+        <h2 class="hero-subtitle">Agent will multiply your talents and prepare you for your dream</h2>
+        <p class="hero-text">
+         Agent will automate and speed up your performance. Whether it's entrepreneurship or new careers, this curriculum is timely and riveting.
+        </p>
+        <p class="hero-text">
+          We are preparing citizens for the economic crisis. Millions of jobs will be lost. Most people need the artificial intelligence language and thinking to maintain their job - we have it here. We are creating classes that will prepare you for the new workforce.
+        </p>
+        <div class="mt-4">
+          {% if user.is_authenticated %}
+            <a href="{% url 'dashboard' %}" class="btn btn-pink btn-lg me-3">Go to Dashboard</a>
+          {% else %}
+            <a href="{% url 'login' %}" class="btn btn-pink btn-lg me-3">Get Started</a>
+          {% endif %}
+          <a href="{% url 'courses_list' %}" class="btn btn-primary btn-lg">View Courses</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <!-- MP4 Video -->
+     <div class="text-center">
+  <video autoplay loop muted playsinline class="hero-image" id="heroVideo">
+    <source src="{% static 'long_gif.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="mt-2">
+    <button onclick="toggleSound()" class="btn btn-outline-light btn-sm">
+      <span id="soundIcon">🔇</span> <span id="soundText">Click to Unmute</span>
+    </button>
+    <p class="mt-2 text-muted d-inline ms-2">AI Agent Academy in action</p>
+  </div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+  <div class="container">
+    <div class="row text-center mb-5">
+      <div class="col">
+        <h2 class="mb-3" style="color: #5b2ee5;">Why Choose AI Agent Academy?</h2>
+        <p class="lead">We provide cutting-edge AI education to prepare you for the future workforce</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3 class="feature-title">Future-Proof Your Career</h3>
+          <p>Learn the AI skills that will be essential in the evolving job market and stay ahead of automation trends.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3 class="feature-title">Hands-On Learning</h3>
+          <p>Practical projects and real-world applications ensure you gain experience that translates directly to your career.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3 class="feature-title">Expert Instructors</h3>
+          <p>Learn from industry professionals with years of experience in AI development and implementation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleSound() {
+  const video = document.getElementById('heroVideo');
+  const soundIcon = document.getElementById('soundIcon');
+  const soundText = document.getElementById('soundText');
+  
+  video.muted = !video.muted;
+  soundIcon.textContent = video.muted ? '🔇' : '🔊';
+  soundText.textContent = video.muted ? 'Click to Unmute' : 'Mute';
+}
+</script>
+{% endblock %}

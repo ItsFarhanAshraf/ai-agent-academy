@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}Dashboard - AI Agent Academy{% endblock %}
+{% block content %}
+<style>
+  .dashboard-container {
+    min-height: 80vh;
+    background: linear-gradient(135deg, #f9f7ff 0%, #ffffff 100%);
+    padding: 60px 0;
+  }
+  
+  .dashboard-card {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    box-shadow: 0 15px 35px rgba(91, 46, 229, 0.1);
+    border-top: 4px solid #ff4ecb;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .dashboard-title {
+    color: #5b2ee5;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 2.5rem;
+  }
+  
+  .dashboard-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+  }
+  
+  .btn-dashboard {
+    background: linear-gradient(135deg, #ff4ecb, #9b4de0);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-dashboard:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 78, 203, 0.3);
+    background: linear-gradient(135deg, #e03eb3, #8b43d6);
+    color: white;
+  }
+</style>
+
+<div class="dashboard-container d-flex justify-content-center align-items-center">
+  <div class="dashboard-card">
+    <h2 class="dashboard-title">Welcome, {{ user.get_full_name|default:user.username }}!</h2>
+    <p class="dashboard-subtitle">Track your progress, explore courses, and level up your AI skills.</p>
+    <a href="{% url 'courses_list' %}" class="btn btn-dashboard">Go to Courses</a>
+  </div>
+</div>
+{% endblock %}

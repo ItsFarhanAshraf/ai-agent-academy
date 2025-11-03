@@ -1,0 +1,15 @@
+# Virtual environment
+venv/
+
+# Compiled python files
+__pycache__/
+*.pyc
+
+# Local database
+*.sqlite3
+
+# Static files collected by collectstatic
+/staticfiles/
+
+# Environment variables
+.env
